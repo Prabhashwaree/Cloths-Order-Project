@@ -76,22 +76,25 @@ function App() {
         }
       >
         <ToastContainer position="bottom-center" limit={1} />
-        <header>
+        <header style={{backgroundColor:"#6d6a66"}}>
           <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
               <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+                style={{backgroundColor:"red",position:"relative", right:"8px"}}
               >
                 <i className="fas fa-bars"></i>
               </Button>
 
               <LinkContainer to="/">
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand 
+                style={{color:"black"}}
+                >SUPER CENTER</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <SearchBox />
+                {/* <SearchBox/> */}
                 <Nav className="me-auto  w-100  justify-content-end">
                   <Link to="/cart" className="nav-link">
                     Cart
@@ -139,10 +142,15 @@ function App() {
                       </LinkContainer>
                     </NavDropdown>
                   )}
+
+                  
                 </Nav>
               </Navbar.Collapse>
+             
             </Container>
+            <SearchBox/>
           </Navbar>
+          
         </header>
         <div
           className={
