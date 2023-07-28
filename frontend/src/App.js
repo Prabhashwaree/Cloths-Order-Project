@@ -90,7 +90,7 @@ function App() {
               <LinkContainer to="/">
                 <Navbar.Brand 
                 style={{color:"black"}}
-                >SUPER CENTER</Navbar.Brand>
+                >SUPER FASHION</Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
