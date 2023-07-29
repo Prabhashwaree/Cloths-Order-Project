@@ -34,18 +34,18 @@ function Product(props) {
         <img src={product.image} className="card-img-top" alt={product.name} 
         style={{height:"300px"}}/>
       </Link>
-      <Card.Body>
+      <Card.Body style={{position:"relative",textAlign:"center",margin:"auto"}}>
         <Link to={`/product/${product.slug}`}>
           <Card.Title>{product.name}</Card.Title>
         </Link>
-        <Rating rating={product.rating} numReviews={product.numReviews} />
+        {/* <Rating rating={product.rating} numReviews={product.numReviews} /> */}
         <Card.Text><b>LKR .</b>{product.price}</Card.Text>
         {product.countInStock === 0 ? (
-          <Button variant="light" disabled>
+          <Button variant="light" disabled style={{backgroundColor:"gray" ,width:"12vw"}}>
             Out of stock
           </Button>
         ) : (
-          <Button onClick={() => addToCartHandler(product)}>Add to cart</Button>
+          <Button onClick={() => addToCartHandler(product)} style={{backgroundColor:"red",color:"white",border:"1px solid white",width:"12vw"}}>Add to cart</Button>
         )}
       </Card.Body>
     </Card>

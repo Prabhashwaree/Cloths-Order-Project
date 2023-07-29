@@ -82,7 +82,7 @@ function App() {
               <Button
                 variant="dark"
                 onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
-                style={{backgroundColor:"red",position:"relative", right:"8px"}}
+                style={{backgroundColor:"red",position:"relative", right:"8px",border:"1px solid red"}}
               >
                 <i className="fas fa-bars"></i>
               </Button>
