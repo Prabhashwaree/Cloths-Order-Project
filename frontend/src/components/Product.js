@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import Rating from './Rating';
 import axios from 'axios';
 import { useContext } from 'react';
 import { Store } from '../Store';
@@ -31,7 +30,7 @@ function Product(props) {
   return (
     <Card>
       <Link to={`/product/${product.slug}`}>
-        <img src={product.image} className="card-img-top" alt={product.name} 
+        <img src={`data:image/jpeg;base64,${product.image}`} className="card-img-top" alt={product.name} 
         style={{height:"300px"}}/>
       </Link>
       <Card.Body style={{position:"relative",textAlign:"center",margin:"auto"}}>

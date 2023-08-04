@@ -55,7 +55,7 @@ export default function CartScreen() {
                   <Row className="align-items-center">
                     <Col md={4}>
                       <img
-                        src={item.image}
+                        src={`data:image/jpeg;base64,${item.image}`}
                         alt={item.name}
                         className="img-fluid rounded img-thumbnail"
                       ></img>{' '}
@@ -82,7 +82,7 @@ export default function CartScreen() {
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
-                    <Col md={3}>${item.price}</Col>
+                    <Col md={3}><b>LKR .</b>{item.price}</Col>
                     <Col md={2}>
                       <Button
                         onClick={() => removeItemHandler(item)}
@@ -104,7 +104,7 @@ export default function CartScreen() {
                 <ListGroup.Item>
                   <h3>
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    items) : $
+                    items) : <b>LKR .</b>
                     {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
                   </h3>
                 </ListGroup.Item>
@@ -115,6 +115,7 @@ export default function CartScreen() {
                       variant="primary"
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
+                      style={{backgroundColor:"red",border:"1px solid red"}}
                     >
                       Proceed to Checkout
                     </Button>

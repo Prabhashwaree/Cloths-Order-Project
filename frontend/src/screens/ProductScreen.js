@@ -8,7 +8,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -39,10 +38,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
-  let reviewsRef = useRef();
 
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
   const [selectedImage, setSelectedImage] = useState('');
 
   const navigate = useNavigate();
@@ -85,38 +81,7 @@ function ProductScreen() {
     navigate('/cart');
   };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    if (!comment || !rating) {
-      toast.error('Please enter comment and rating');
-      return;
-    }
-    try {
-      const { data } = await axios.post(
-        `/api/products/${product._id}/reviews`,
-        { rating, comment, name: userInfo.name },
-        {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-
-      dispatch({
-        type: 'CREATE_SUCCESS',
-      });
-      toast.success('Review submitted successfully');
-      product.reviews.unshift(data.review);
-      product.numReviews = data.numReviews;
-      product.rating = data.rating;
-      dispatch({ type: 'REFRESH_PRODUCT', payload: product });
-      window.scrollTo({
-        behavior: 'smooth',
-        top: reviewsRef.current.offsetTop,
-      });
-    } catch (error) {
-      toast.error(getError(error));
-      dispatch({ type: 'CREATE_FAIL' });
-    }
-  };
+ 
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -127,7 +92,7 @@ function ProductScreen() {
         <Col md={6}>
           <img
             className="img-large"
-            src={selectedImage || product.image}
+            src={`data:image/jpeg;base64,${product.image || selectedImage}`}
             alt={product.name}
            style={{height:"83vh"}}></img>
         </Col>
@@ -148,7 +113,7 @@ function ProductScreen() {
             <ListGroup.Item><b>Pirce : LKR :</b>{product.price}</ListGroup.Item>
             <ListGroup.Item>
               <Row xs={1} md={2} className="g-2">
-                {[product.image, ...product.images].map((x) => (
+                {[product.image].map((x) => (
                   <Col key={x}>
                     <Card>
                       <Button
@@ -157,7 +122,7 @@ function ProductScreen() {
                         variant="light"
                         onClick={() => setSelectedImage(x)}
                       >
-                        <Card.Img variant="top" src={x} alt="product" />
+                        <Card.Img variant="top" src={`data:image/jpeg;base64,${x}`} alt="product" />
                       </Button>
                     </Card>
                   </Col>

@@ -33,7 +33,6 @@ import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
-import MapScreen from './screens/MapScreen';
 import ForgetPasswordScreen from './screens/ForgetPasswordScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
 
@@ -204,7 +203,7 @@ function App() {
                 path="/map"
                 element={
                   <ProtectedRoute>
-                    <MapScreen />
+                  
                   </ProtectedRoute>
                 }
               />
